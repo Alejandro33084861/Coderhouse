@@ -23,7 +23,7 @@ $ancho: 500px;
 header{text-align: center;}
 
 .imagen-instagram{
-  width: $ancho/6;
+  width: $ancho/12;
   @extend .SeccionPrincipal;  /* USO @EXTEND */
     border-radius: 30%;
     text-align: right;
@@ -49,29 +49,29 @@ header{text-align: center;}
   .bg-blue {
     background-color: lightskyblue; }
   
-  .hero1 {
-    background-size: cover;
-    animation-name: heroAnimate1;
-    animation-iteration-count: infinite;
-    animation-duration: 16s;
-    animation-timing-function: ease-in-out; }
-  
-  @keyframes heroAnimate1 {
-    0% {
-      height: 1050px;
-      background-image: url("images/perro3.jpg"); }
-    25% {
-      height: 1070px;
-      background-image: url("images/perro.jpg"); }
-    50% {
-      height: 1080px;
-      background-image: url("images/guarderia4.jpg"); }
-    75% {
-      height: 1090px;
-      background-image: url("images/guarderia3_1.jpg"); }
-    100% {
-      height: 1100px;
-      background-image: url("images/guarderia2.jpg"); } }
+    .hero1 {
+      background-size: inherit;
+      animation-name: heroAnimate1;
+      animation-iteration-count: infinite;
+      animation-duration: 16s;
+      animation-timing-function: ease-in-out; }
+    
+    @keyframes heroAnimate1 {
+      0% {
+        height: 600px;
+        background-image: url("images/perro3.jpg"); }
+      25% {
+        height: 600px;
+        background-image: url("images/perro.jpg"); }
+      50% {
+        height: 600px;
+        background-image: url("images/guarderia4.jpg"); }
+      75% {
+        height: 600px;
+        background-image: url("images/guarderia3_1.jpg"); }
+      100% {
+        height: 600px;
+        background-image: url("images/guarderia2.jpg"); } }
   /*COLUMNA 1 */
 
   /*COLUMNA 2 */
@@ -103,8 +103,7 @@ header{text-align: center;}
   .imagen-aside1 {
     width: $ancho/2;
     @extend .SeccionPrincipal; /* USO @EXTEND */
-    margin-right: 30px; }
-  /*COLUMNA 3 *
+     /*COLUMNA 3 *
 
 
   /*FOOTER*/
@@ -112,16 +111,31 @@ header{text-align: center;}
     background-color: lightsalmon; }
 
     .imagen-prueba {
-        width: 250px;
-        margin-left: 2300px;
+      width:  130px;
+      /*margin-left: 2300px;*/
+      border: 8px solid #d8a1d8;
+      border-radius: 18%; }
+    
+      
+    .imagen-prueba1 {
+      width:  100px;
+      /*margin-left: 2300px;*/
+      border: 8px solid #d8a1d8;
+      border-radius: 18%; }
+    
+      .imagen-prueba2 {
+        width:  160px;
+        /*margin-left: 2300px;*/
         border: 8px solid #d8a1d8;
         border-radius: 18%; }
-
+      
         footer {
             grid-area: footer;
             display: flex;
             justify-content: space-around; } 
-  /*FOOTER*/
+
+   /*FOOTER*/
+
 
   $redes: ( /*Declaramos nuestro mapa*/
   twitter: #55acee,
