@@ -1,206 +1,183 @@
- /* COMIENZA EL CODIGO */
-
-       /*TITULO*/
-
-       alert(" !! BIENVENIDO  AL HOTEL CANINO  DE !! MIS PATITAS !! ");
-
-       /*CONDICIONAL*/
-
-       let CantPerros = " CUANTOS PERROS DESEA HOSPEDAR \n1 PERROS \n2 PERROS  \n3 O MAS PERROS  \n4 SALIR"
-       let  CP=   prompt(CantPerros) 
-       let CantDias = prompt("INGRESE LA DURACION DE LA ESTADIA EN DIAS")
-      
-       
-       let precio1D= 2000
-       let contador = 0
-       let precioEstadia = precio1D * CantDias * CP
-
-       if ( CP == 1 ) {
-        alert("EL PRECIO DE SU ESTADIA SERIA DE :" + " $ " +  precioEstadia);
-      }
-      else if (  CP == 2 ) {
-         alert("EL PRECIO DE SU ESTADIA SERIA DE :" + " $ " + (precioEstadia)*0.90);
-     }
-     else if (  CP == 3 ) {
-        alert("EL PRECIO DE SU ESTADIA SERIA DE  :" + " $ " +  (precioEstadia)*0.80);
-     }
-
-     else if (  CP == 4 ) {
-      alert("GRACIAS POR SU VISITA");
-   }
-    
-        else {
-            alert("GRACIAS POR SU VISITA");
-        }
-       
-do { 
-    contador++
-    alert("USTED ESTA COTIZANDO ESTADIA PARA  :" + "  " + CP + "  " + "PERROS DURANTE" + " " +  CantDias + "  " + "DIAS")
-   } while (contador < 1);
-
-/*CONDICIONAL*/
-
-/* FUNCION*/
-let mes= prompt("SELECCIONE EL MES DE SU ESTADIA \n1 DICIEMBRE \n2 ENERO  \n3 FEBRERO  \n4 SALIR")
-
-function calcularPrecioP(mes, precioEstadia) {
-    var precioFinal = precioEstadia;
-    
-    switch(mes) {
-      case "1":
-        precioFinal = precioEstadia * 0.90;
-        break;
-      case "2":
-        precioFinal = precioEstadia * 0.75;
-            break;
-      case "3":
-        precioFinal = precioEstadia * 0.70;
-        break;
-      // Continuar con los otros meses
-      default:
-        precioFinal = precioEstadia;
-    }
-    
-    return precioFinal;
-  }
-
-  var precioFinal = calcularPrecioP(mes ,precioEstadia);
-  console.log(precioFinal);
-  alert("EL PRECIO FINAL DE SU ESTADIA ES :" + " $  " + precioFinal);
-
-  /*FUNCION*/
-
-   /* DO WHILE*/
-let nombreUsuarioBD = "ALEJANDRO"
-let nombreUsuarioIngresado = ""
-let contador1 = 0
-do {
-  nombreUsuarioIngresado = prompt("INICIE SESION PARA CONFIRMAR SU RESERVA")
-  contador++
-} while (contador < 3 && nombreUsuarioBD != nombreUsuarioIngresado)
-
-if (nombreUsuarioBD == nombreUsuarioIngresado && contador <= 3) {
-  alert(nombreUsuarioBD + " TU RESERVA FUE EXITOSA!! MIRA NUESTRO PETSHOP")
-} else {
-  alert("INTENTE MAS TARDE")
-}
-/* DO WHILE*/
-
-
-/*FUNCION CONSTRUCTORA */
-let products = [
+let productos = [
+  {
+    idCat: 0,
+    id: 0,
+    nombre: "ZOGA",
+    categoria: "JUGUETES",
+    precio: 1000,
+    stock: 4,
+    img: "images/zoga1.jpg"
+  },
   {
     idCat: 1,
     id: 1,
     nombre: "PELOTA",
     categoria: "JUGUETES",
     precio: 800,
-    stock: 3
+    stock: 3,
+    img: "images/pelota.WEBP"
   },
   {
-    idCat: 1,
     id: 2,
-    nombre: "PELUCHE",
-    categoria: "JUGUETES",
-    precio: 800,
-    stock: 3
+    nombre: "ROPA",
+    categoria: "INDUMENTARIA",
+    precio: 4500,
+    stock: 5,
+    img:"images/ropa.WEBP"
   },
-  {
-    idCat: 1,
+    {
     id: 3,
-    nombre: "HUESOS DE GOMA",
-    categoria: "JUGUETES",
-    precio: 1000,
-    stock: 5
+    nombre: "CAMAS",
+    categoria: "INDUMENTARIA",
+    precio: 3000,
+    stock: 1,
+    img: "images/camas.jpg"
   },
   {
-    idCat: 2,
     id: 4,
-    nombre: "SOGA",
-    categoria: "ACCESORIOS",
-    precio: 1000,
-    stock: 5
+    nombre: "PRETALES",
+    categoria: "INDUMENTARIA",
+    precio: 2000,
+    stock: 6,
+    img: "images/pretales.jpg"
   },
-  {
-    idCat: 2,
+    {
     id: 5,
-    nombre: "COLLARES",
-    categoria: "ACCESORIOS",
-    precio: 1000,
-    stock: 1
-  },
-  {
-    idCat: 2,
-    id: 6,
     nombre: "CORREAS",
     categoria: "ACCESORIOS",
     precio: 1000,
-    stock: 8
+    stock: 5,
+    img: "images/correas2.jpg"
   },
   {
-    idCat: 3,
+    id: 6,
+    nombre: "COLLARES",
+    categoria: "ACCESORIOS",
+    precio: 800,
+    stock: 5,
+    img: "images/collares1.jpg"
+  },
+  {
     id: 7,
-    nombre: "REMERAS",
-    categoria: "ROPA",
-    precio: 1500,
-    stock: 2
-  },
-  {
-    idCat: 3,
-    id: 8,
-    nombre: "PRETALES",
-    categoria: "ROPA",
-    precio: 1500,
-    stock: 2
-  },
-  ]
+    nombre: "CUCHAS",
+    categoria: "ACCESORIOS",
+    precio: 3000,
+    stock: 1,
+    img: "images/cama.jpg"
+  }
+]
 
-let productos = products.map(product => {
-  return new Producto(product.idCat, product.id, product.nombre, product.categoria, product.precio, product.stock)
+
+let usuarioBD = "Alejandro"
+let contraseniaBD = "Alejandro1987"
+
+let login = document.getElementById("login")
+let pantallaCompra = document.getElementById("pantallaCompra")
+
+// REGISTRARSE
+let usuario = document.getElementById("usuario")
+let contrasenia = document.getElementById("contrasenia")
+let registrarse = document.getElementById("registrarse")
+
+registrarse.addEventListener("click", () => {
+  console.log(usuario.value)
+  console.log(contrasenia.value)
+  let infoUsuario = { usuario: usuario.value, contrasenia: contrasenia.value}
+  localStorage.setItem("infoUsuario", JSON.stringify(infoUsuario))
 })
 
+// INICIAR SESION
+let usuarioIS = document.getElementById("usuarioIS")
+let contraseniaIS = document.getElementById("contraseniaIS")
+let iniciarSesion = document.getElementById("iniciarSesion")
 
-let categoria = prompt("ESCRIBA UNA DE LAS CATEGOTRIA PARA FILTRAR \n1 JUGUETES \n2 ACCESORIOS  \n3 ROPA")
-console.log(productos.filter(producto => producto.categoria.includes(categoria))) 
+iniciarSesion.addEventListener("click", () => {
+  let infoUsuario = JSON.parse(localStorage.getItem("infoUsuario"))
+  if (infoUsuario.usuario == usuarioIS.value && infoUsuario.contrasenia == contraseniaIS.value) {
+    alert("Bienvenido" + " " + usuarioBD)   
+    login.classList.add("ocultar")
+    pantallaCompra.classList.remove("ocultar")
+    pantallaCompra1.classList.remove("ocultar")
+  } else {
+    alert("Datos incorrectos, reintente")
+  }
+})
 
-const CatSeleccionada = productos.filter(producto => producto.categoria.includes(categoria))
+// BUSQUEDA, SELECCION Y COMPRA
 
-let listaseleccionada = " SELECCIONE ALGUN PRODUCTO DE LA TIENDA  \n" + CatSeleccionada.map(producto => producto.id + " " + producto.nombre).join('\n') + "\n0 PARA SALIR"
-console.log(listaseleccionada)
+let carritoDOM = document.getElementById("carrito")
+let botonComprar = document.getElementById("comprar")
+botonComprar.addEventListener("click", finalizarCompra)
 
-  let carrito = []
-  
-  let opcion
-  
-  do {
-    opcion = Number(prompt(listaseleccionada))
-    let productoBuscado = productos.find(producto => producto.id === opcion)
-    
-    if (productoBuscado) {
-      let posicionProductoBuscado = carrito.findIndex(producto => producto.id === productoBuscado.id)
-      if (posicionProductoBuscado != -1) {
-        carrito[posicionProductoBuscado].cantidadUnidades++
-        carrito[posicionProductoBuscado].subtotal = carrito[posicionProductoBuscado].precioUnidad * carrito[posicionProductoBuscado].cantidadUnidades
-      } else {
-        carrito.push({
-          id: productoBuscado.id,
-          nombre: productoBuscado.nombre,
-          cantidadUnidades: 1,
-          precioUnidad: productoBuscado.precio,
-          subtotal: productoBuscado.precio
-        })
-      }
-    }
-    console.log(carrito)
-   
-  } while (opcion != 0)
-  
+function finalizarCompra() {
+  alert("Muchas gracias por su compra")
+  localStorage.removeItem("carrito")
+  carrito = []
+  renderizarCarrito(carrito)
+}
 
-  const precioTotal = carrito.reduce((acumulado, actual) => {
-    return acumulado + actual.subtotal;
-  }, 0);
-  console.log(precioTotal)
-  
- 
-  alert("MUCHAS GRACIAS SU ESTADIA SALDRA :" + " $  " + precioFinal + "\n" + "\n" + "ADEMAS SELECCIONO DEL PETSHOP" + "\n" + "\n" + carrito.map(producto => producto.cantidadUnidades + "  " + producto.nombre + "  " + " $  " + producto.subtotal).join('\n') + "\n" + "\n" + "SU TOTAL A ABONAR ES" + " $ " + (precioFinal+precioTotal) );
-  
+let carrito = []
+if (localStorage.getItem("carrito")) {
+  carrito = JSON.parse(localStorage.getItem("carrito"))
+  renderizarCarrito(carrito)
+}
+
+renderizarProductos(productos)
+
+function renderizarProductos(arrayProductos) {
+  let contenedor = document.getElementById("contenedorProductos")
+  contenedor.innerHTML = ""
+  arrayProductos.forEach(producto => {
+    let tarjetaProducto = document.createElement("div")
+    tarjetaProducto.className = "tarjetaProducto"
+
+    tarjetaProducto.innerHTML = `
+      <h4 class=tituloProducto>${producto.nombre}</h4>
+      <p>${producto.categoria}</p>
+      <div class=imagen style="background-image: url(${producto.img})"></div>
+      <h4>PRECIO: ${producto.precio}</h4>
+      <p>Quedan ${producto.stock} unidades</p>
+      <button id=${producto.id}>AGREGAR AL CARRITO</button>
+    `
+    contenedor.appendChild(tarjetaProducto)
+
+    let boton = document.getElementById(producto.id)
+    boton.addEventListener("click", agregarProductoAlCarrito)
+  })
+}
+
+function agregarProductoAlCarrito(e) {
+  let productoBuscado = productos.find(producto => producto.id === Number(e.target.id))
+  if (carrito.some(producto => producto.id == productoBuscado.id)) {
+    let pos = carrito.findIndex(producto => producto.id == productoBuscado.id)
+    carrito[pos].unidades++
+    carrito[pos].subtotal = carrito[pos].precio * carrito[pos].unidades
+  } else {
+    carrito.push({
+      id: productoBuscado.id,
+      nombre: productoBuscado.nombre,
+      precio: productoBuscado.precio,
+      unidades: 1,
+      subtotal: productoBuscado.precio
+    })
+  }
+  localStorage.setItem("carrito", JSON.stringify(carrito))
+  renderizarCarrito(carrito)
+}
+
+function renderizarCarrito(arrayDeProductos) {
+  carritoDOM.innerHTML = ""
+  arrayDeProductos.forEach(producto => {
+    carritoDOM.innerHTML += `<h3>${producto.nombre} ${producto.precio} ${producto.unidades} ${producto.subtotal}</h3>`
+  })
+}
+
+let buscador = document.getElementById("buscador")
+buscador.addEventListener("input", filtrar)
+
+function filtrar(e) {
+  let arrayFiltrado = productos.filter(producto => producto.nombre.includes(buscador.value))
+  renderizarProductos(arrayFiltrado)
+}
+
+

@@ -13,6 +13,12 @@
   margin-top: 30px;
   margin-left: 100px; }
 
+
+  .SeccionPrincipal1 {
+    color: purple;
+    font-size: 15px;
+    text-align: left; }
+
 /* NESTING */
 /*HEADER Y LOGO PRINCIPAL */
 header {
@@ -128,3 +134,49 @@ footer {
   justify-content: space-around; }
 
 /*FOOTER*/
+
+/* PET SHOP*/
+* {
+  box-sizing: border-box;
+  margin: 4px;
+}
+
+#contenedorProductos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tarjetaProducto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 4px solid violet;
+  border-radius: 10px;
+  margin: 1px;
+}
+
+.imagen {
+  width: 200px;
+  height: 250px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#carrito {
+  width: 100%;
+  height: 300px;
+  border: 4px solid violet;
+}
+
+
+.ocultar {
+  display: none;
+}
+
+.mostrar {
+  display: flex;
+}
+
+/* PET SHOP*/
