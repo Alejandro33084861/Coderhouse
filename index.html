@@ -25,7 +25,7 @@
 </header>
         <!-- PARTE SUPERIOR LOGO Y MENU -->  
 
-
+         <!-- PARTE DE USUARIO Y LOGIN-->    
         <div id="login" class= "col-12 bg-blue gradient SeccionPrincipal1">
           <h2>Registrarse</h2>
           <input id="usuario" placeholder="usuario">
@@ -40,28 +40,27 @@
           <button id="iniciarSesion">Iniciar Sesion</button>
       
         </div>
+        <!-- PARTE DE USUARIO Y LOGIN-->    
 
+        
         <!-- PARTE DE ECOMMERCE INCORPORANDO DOM-->  
-        <div class= "container-fluid ">   
-          <div class= "row">
-            <div   id="pantallaCompra" class= "col-12 bg-blue gradient SeccionPrincipal ocultar">
- <input id="buscador" placeholder="Buscar por producto">
- <button id="buscar">BUSCAR</button>
+
+<div class="col-12 bg-blue gradient SeccionPrincipal">
+<input class=" bg-blue gradient SeccionPrincipal"  id="buscador" placeholder="Buscar por nombre de producto">
+<button class=" bg-blue gradient SeccionPrincipal" id="buscar">BUSCAR</button>
+<button class=" bg-blue gradient SeccionPrincipal" id="botonCarrito">CARRITO</button>
 </div>
+
+<div class=" container-fluid">
+<div class=" container-fluid bg-blue gradient SeccionPrincipal1" id="carrito"></div>
+
+<div class="container-fluid bg-blue gradient SeccionPrincipal1" id="contenedorProductos"> 
+  <div id="wrapper">
+
+  </div>
 </div>
 </div>
 
-<div class= "container-fluid ">   
-  <div class= "row">
-    <div id="pantallaCompra1" class= "col-12 bg-blue gradient SeccionPrincipal ocultar">
- <div id="carrito"></div>
- <button id="comprar">Finalizar compra</button>
- <div id="contenedorProductos">
-
- </div>
-</div>
-</div>
-</div>
 <!-- PARTE DE ECOMMERCE INCORPORANDO DOM-->  
 
 
@@ -114,5 +113,7 @@
            <!-- LINKS A JS-->
              
 <body>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="./script.js"></script>
 </body>

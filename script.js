@@ -1,80 +1,10 @@
-let productos = [
-  {
-    idCat: 0,
-    id: 0,
-    nombre: "ZOGA",
-    categoria: "JUGUETES",
-    precio: 1000,
-    stock: 4,
-    img: "images/zoga1.jpg"
-  },
-  {
-    idCat: 1,
-    id: 1,
-    nombre: "PELOTA",
-    categoria: "JUGUETES",
-    precio: 800,
-    stock: 3,
-    img: "images/pelota.WEBP"
-  },
-  {
-    id: 2,
-    nombre: "ROPA",
-    categoria: "INDUMENTARIA",
-    precio: 4500,
-    stock: 5,
-    img:"images/ropa.WEBP"
-  },
-    {
-    id: 3,
-    nombre: "CAMAS",
-    categoria: "INDUMENTARIA",
-    precio: 3000,
-    stock: 1,
-    img: "images/camas.jpg"
-  },
-  {
-    id: 4,
-    nombre: "PRETALES",
-    categoria: "INDUMENTARIA",
-    precio: 2000,
-    stock: 6,
-    img: "images/pretales.jpg"
-  },
-    {
-    id: 5,
-    nombre: "CORREAS",
-    categoria: "ACCESORIOS",
-    precio: 1000,
-    stock: 5,
-    img: "images/correas2.jpg"
-  },
-  {
-    id: 6,
-    nombre: "COLLARES",
-    categoria: "ACCESORIOS",
-    precio: 800,
-    stock: 5,
-    img: "images/collares1.jpg"
-  },
-  {
-    id: 7,
-    nombre: "CUCHAS",
-    categoria: "ACCESORIOS",
-    precio: 3000,
-    stock: 1,
-    img: "images/cama.jpg"
-  }
-]
-
-
+// REGISTRO DE USUARIO Y LOGIN (USO DE LOCAL STORAGE Y JSON)
 let usuarioBD = "Alejandro"
 let contraseniaBD = "Alejandro1987"
 
 let login = document.getElementById("login")
 let pantallaCompra = document.getElementById("pantallaCompra")
 
-// REGISTRARSE
 let usuario = document.getElementById("usuario")
 let contrasenia = document.getElementById("contrasenia")
 let registrarse = document.getElementById("registrarse")
@@ -86,7 +16,6 @@ registrarse.addEventListener("click", () => {
   localStorage.setItem("infoUsuario", JSON.stringify(infoUsuario))
 })
 
-// INICIAR SESION
 let usuarioIS = document.getElementById("usuarioIS")
 let contraseniaIS = document.getElementById("contraseniaIS")
 let iniciarSesion = document.getElementById("iniciarSesion")
@@ -94,90 +23,125 @@ let iniciarSesion = document.getElementById("iniciarSesion")
 iniciarSesion.addEventListener("click", () => {
   let infoUsuario = JSON.parse(localStorage.getItem("infoUsuario"))
   if (infoUsuario.usuario == usuarioIS.value && infoUsuario.contrasenia == contraseniaIS.value) {
-    alert("Bienvenido" + " " + usuarioBD)   
+    Swal.fire("¡Hola" + " " + usuarioBD + "!", "¡Bienvenido" + " " + "a Mis Patitas!" , "success");
     login.classList.add("ocultar")
     pantallaCompra.classList.remove("ocultar")
     pantallaCompra1.classList.remove("ocultar")
   } else {
-    alert("Datos incorrectos, reintente")
-  }
-})
-
-// BUSQUEDA, SELECCION Y COMPRA
-
-let carritoDOM = document.getElementById("carrito")
-let botonComprar = document.getElementById("comprar")
-botonComprar.addEventListener("click", finalizarCompra)
-
-function finalizarCompra() {
-  alert("Muchas gracias por su compra")
-  localStorage.removeItem("carrito")
-  carrito = []
-  renderizarCarrito(carrito)
+    Swal.fire("Datos incorrectos" , "reintente", "error");
+     }
 }
+)
+// REGISTRO DE USUARIO Y LOGIN (USO DE LOCAL STORAGE Y JSON)
 
-let carrito = []
-if (localStorage.getItem("carrito")) {
-  carrito = JSON.parse(localStorage.getItem("carrito"))
+// USO DE FETCH, CARGA DE DATOS DESDE ARCHIVO.JSON, USO DE LIBRERIA , FUNCIONES , CONDICIONALES Y SINTAXIS AVANZADA 
+fetch("./data.json")
+  .then(respuesta => respuesta.json())
+  .then(productos => miPrograma(productos))
+
+function miPrograma(productos) {
+  let carritoDOM = document.getElementById("carrito")
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || []
+
   renderizarCarrito(carrito)
-}
+  renderizarProductos(productos)
 
-renderizarProductos(productos)
+  function renderizarProductos(arrayProductos) {
+    let contenedor = document.getElementById("wrapper")
+    contenedor.innerHTML = ""
+    arrayProductos.forEach(({ nombre, categoria, img, precio, stock, id }) => {
+      let tarjetaProducto = document.createElement("div")
+      tarjetaProducto.className = "tarjetaProducto"
 
-function renderizarProductos(arrayProductos) {
-  let contenedor = document.getElementById("contenedorProductos")
-  contenedor.innerHTML = ""
-  arrayProductos.forEach(producto => {
-    let tarjetaProducto = document.createElement("div")
-    tarjetaProducto.className = "tarjetaProducto"
-
-    tarjetaProducto.innerHTML = `
-      <h4 class=tituloProducto>${producto.nombre}</h4>
-      <p>${producto.categoria}</p>
-      <div class=imagen style="background-image: url(${producto.img})"></div>
-      <h4>PRECIO: ${producto.precio}</h4>
-      <p>Quedan ${producto.stock} unidades</p>
-      <button id=${producto.id}>AGREGAR AL CARRITO</button>
+      tarjetaProducto.innerHTML = `
+      <h3 class=tituloProducto>${nombre}</h3>
+      <p>${categoria}</p>
+      <div class=imagen style="background-image: url(${img})"></div>
+      <h4>PRECIO: ${precio}</h4>
+      <p>Quedan<span id=span${id}>${stock}</span>unidades</p>
+      <button id=${id}>AGREGAR AL CARRITO</button>
     `
-    contenedor.appendChild(tarjetaProducto)
+      contenedor.appendChild(tarjetaProducto)
 
-    let boton = document.getElementById(producto.id)
-    boton.addEventListener("click", agregarProductoAlCarrito)
-  })
-}
-
-function agregarProductoAlCarrito(e) {
-  let productoBuscado = productos.find(producto => producto.id === Number(e.target.id))
-  if (carrito.some(producto => producto.id == productoBuscado.id)) {
-    let pos = carrito.findIndex(producto => producto.id == productoBuscado.id)
-    carrito[pos].unidades++
-    carrito[pos].subtotal = carrito[pos].precio * carrito[pos].unidades
-  } else {
-    carrito.push({
-      id: productoBuscado.id,
-      nombre: productoBuscado.nombre,
-      precio: productoBuscado.precio,
-      unidades: 1,
-      subtotal: productoBuscado.precio
+      let boton = document.getElementById(id)
+      boton.addEventListener("click", agregarProductoAlCarrito)
     })
   }
-  localStorage.setItem("carrito", JSON.stringify(carrito))
-  renderizarCarrito(carrito)
-}
 
-function renderizarCarrito(arrayDeProductos) {
-  carritoDOM.innerHTML = ""
-  arrayDeProductos.forEach(producto => {
-    carritoDOM.innerHTML += `<h3>${producto.nombre} ${producto.precio} ${producto.unidades} ${producto.subtotal}</h3>`
-  })
-}
+  function agregarProductoAlCarrito(e) {
 
-let buscador = document.getElementById("buscador")
-buscador.addEventListener("input", filtrar)
+    let posicionProd = productos.findIndex(producto => producto.id == e.target.id)
+    let productoBuscado = productos.find(producto => producto.id === Number(e.target.id))
 
-function filtrar(e) {
-  let arrayFiltrado = productos.filter(producto => producto.nombre.includes(buscador.value))
-  renderizarProductos(arrayFiltrado)
+    if (productos[posicionProd].stock > 0) {
+      lanzarAlerta("Producto agregado", "Producto agregado correctamente", "success")
+
+      let elementoSpan = document.getElementById("span" + e.target.id)
+      productos[posicionProd].stock--
+      elementoSpan.innerHTML = productos[posicionProd].stock
+
+      if (carrito.some(({ id }) => id == productoBuscado.id)) {
+        let pos = carrito.findIndex(({ id }) => id == productoBuscado.id)
+        carrito[pos].unidades++
+        carrito[pos].subtotal = carrito[pos].precio * carrito[pos].unidades
+      } else {
+        carrito.push({
+          id: productoBuscado.id,
+          nombre: productoBuscado.nombre,
+          precio: productoBuscado.precio,
+          unidades: 1,
+          subtotal: productoBuscado.precio
+        })
+      }
+      localStorage.setItem("carrito", JSON.stringify(carrito))
+      renderizarCarrito(carrito)
+    } else {
+      lanzarAlerta("SIN STOCK", `Producto ${productoBuscado.nombre} sin stock`, "error")
+    }
+  }
+
+  function renderizarCarrito(arrayDeProductos) {
+    carritoDOM.innerHTML = ""
+    arrayDeProductos.forEach(({ nombre, precio, unidades, subtotal }) => {
+      carritoDOM.innerHTML += `<h5>${nombre} ${precio} ${unidades} ${subtotal}</h5>`
+    })
+    carritoDOM.innerHTML += `<button id=comprar>Finalizar compra</button>`
+
+    let botonComprar = document.getElementById("comprar")
+    botonComprar.addEventListener("click", finalizarCompra)
+  }
+
+  let buscador = document.getElementById("buscador")
+  buscador.addEventListener("input", filtrar)
+
+  function filtrar() {
+    let arrayFiltrado = productos.filter(({ nombre }) => nombre.includes(buscador.value))
+    renderizarProductos(arrayFiltrado)
+  }
+
+  let botonCarrito = document.getElementById("botonCarrito")
+  botonCarrito.addEventListener("click", mostrarCarrito)
+
+  function mostrarCarrito() {
+    let contenedorProductos = document.getElementById("contenedorProductos")
+    carritoDOM.classList.toggle("ocultar")
+    contenedorProductos.classList.toggle("ocultar")
+  }
+
+  function lanzarAlerta(title, text, icon) {
+    Swal.fire({
+      title,
+      text,
+      icon
+    })
+  }
+
+  function finalizarCompra() {
+    lanzarAlerta("Gracias por su compra")
+    localStorage.removeItem("carrito")
+    carrito = []
+    renderizarCarrito(carrito)
+  }
 }
 
 
